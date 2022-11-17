@@ -1,6 +1,7 @@
-var express = require('express');
-var app = express();
-var path = require('path');
+let express = require('express');
+let app = express();
+let path = require('path');
+let ejs = require('ejs');
 const PORT = 3000;
 
 // GET request for showing "hello"
@@ -14,8 +15,8 @@ app.put('/', (req, res)=>{
     let options = {
         root: path.join(__dirname)
     };
-     
-    var fileName = 'file.html';
+    
+    let fileName = 'file.html';
     res.sendFile(fileName, options, function (err) {
         if (err) {
             next(err);
@@ -24,6 +25,9 @@ app.put('/', (req, res)=>{
         }
     });
 })
+
+// GET request for showing test-ejs
+app.get('/test-ejs', (req, res)=>{ejs.render('Hey')})
 
 app.listen(PORT,function(){
   console.log('Hello');
