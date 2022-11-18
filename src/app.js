@@ -4,6 +4,15 @@ let path = require('path');
 let ejs = require('ejs');
 const PORT = 3000;
 
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'assets/views'))
+
+
+app.use(express.static(path.resolve(__dirname,'assets')));
+
+// GET request for showing test-ejs
+app.get('/test-ejs', (req, res)=>{res.render('index.ejs',{myTitle:'my first title'})})
+
 // GET request for showing "hello"
 app.get('/', (req, res)=>{res.send('hello')})
 
@@ -26,9 +35,7 @@ app.put('/', (req, res)=>{
     });
 })
 
-// GET request for showing test-ejs
-app.get('/test-ejs', (req, res)=>{ejs.render('Hey')})
 
-app.listen(PORT,function(){
-  console.log('Hello');
+app.listen(PORT,()=>{
+  console.log(`Server running on port ${PORT}`);
 });
