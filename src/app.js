@@ -13,6 +13,11 @@ app.use(express.static(path.resolve(__dirname,'assets')));
 // GET request for showing test-ejs
 app.get('/test-ejs', (req, res)=>{res.render('index.ejs',{myTitle:'my first title'})})
 
+// GET request for showing test-ejs
+app.get('/test-ejs2', (req, res)=>{res.render('foreach.ejs',{
+    users : ['Bob', 'John', 'Jane' ]
+  })})
+
 // GET request for showing "hello"
 app.get('/', (req, res)=>{res.send('hello')})
 
